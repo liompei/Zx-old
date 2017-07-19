@@ -23,8 +23,10 @@ android {
     }
 }
 
-def siteUrl = 'https://github.com/liompei/Zx'   // 项目的主页
-def gitUrl = 'https://github.com/liompei/Zx.git'   // Git仓库的url
+version = "1.0.0"
+def siteUrl = 'https://github.com/liompei/Zx'
+def gitUrl = 'https://github.com/liompei/Zx.git'
+group = "com.liompei"
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -32,6 +34,7 @@ properties.load(project.rootProject.file('local.properties').newDataInputStream(
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
 
     pkg {
         repo = 'maven'  // 发布到Maven库
@@ -40,49 +43,10 @@ bintray {
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']
         publish = true
-        configurations = ['archives']
-        version{
-            name = '1.0.0'
-            desc='a pawerful log for android'
-            released  = new Date()
-            vcsTag = 'v1.0.0'
-        }
     }
 }
-
-install {
-    repositories.mavenInstaller {
-        // 生成POM.xml
-        // This generates POM.xml with proper parameters
-        pom {
-            project {
-                packaging 'aar'
-                // Add your description here
-                name 'Android Log'  // 项目描述
-                description 'a powerful log for android'
-                url siteUrl
-                // Set your license
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'liompei'        //填写bintray或者github的用户名
-                        name '贝黎明'         //姓名，可以是中文
-                        email 'blm1137694912@gmail.com'
-                    }
-                }
-                scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
-                }
-            }
-        }
-    }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -100,6 +64,36 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                name 'Android Log Tool'
+                url siteUrl
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'liompei'
+                        name 'BeiLiMing'
+                        email 'blm1137694912@gmail.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
 }
 
 dependencies {
