@@ -14,16 +14,16 @@ ZxLog更方便的打印日志,Toast
 
 ---
 
-##Android Studio
+## Android Studio
 ```
 dependencies {
-    compile 'com.liompei.zlog:zlog:1.0.0'
+    compile 'com.liompei:zxlog:1.0.0'
 }
 ```
 
-##Eclipse
-Download [zlog.jar](https://github.com/liompei/ZLog/raw/master/zlog.jar) or zlog library
+## Eclipse
 
+https://vignette.wikia.nocookie.net/cardfight/images/5/55/Go-home-youre-drunk.jpg/revision/latest?cb=20130819142928
 ---
 
 ## How to Use
@@ -39,7 +39,7 @@ Zx.d("tag","This is debug")
 ![](https://github.com/liompei/ZLog/blob/master/img/simple1.png)
 
 主要方法有:
-###Log
+### Log
 
 ```
 Zx.v();  //verbose
@@ -56,7 +56,7 @@ Zx.xml();  //parse xml
 Zx.initLog("TAG",true);  //tag,isShowlog
 ```
 
-###Toast
+### Toast
 注意:使用Toast必须初始化传入Context,否则将不显示
 ```
 Zx.initToast(getApplicationContext(),true);  //context,isShowToast
@@ -67,7 +67,7 @@ Zx.Show("This is Toast");
 ```
 ---
 
-###License
+### License
 
 ZLog is released under the [Apache 2.0 license](LICENSE).
 
