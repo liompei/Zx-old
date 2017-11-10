@@ -69,7 +69,7 @@ Zx.Show("This is Toast");
 
 ### License
 
-ZLog is released under the [Apache 2.0 license](LICENSE).
+ZxLog is released under the [Apache 2.0 license](LICENSE).
 
 ```
 Copyright 2016 Liompei
